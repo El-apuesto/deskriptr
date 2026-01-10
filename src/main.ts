@@ -1,12 +1,11 @@
 import { app, BrowserWindow, ipcMain, dialog, shell, Menu } from 'electron';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
 import Store from 'electron-store';
 import { AppState, UsageStats, License, TranscriptionResult } from './types/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = __filename || '';
+const __dirname = path.dirname(__filename) || __dirname;
 
 // Handle Squirrel.Windows installer events
 if (process.platform === 'win32') {
@@ -243,7 +242,7 @@ class TattletaleApp {
       type: 'info',
       title: 'About Tattletale',
       message: 'Tattletale',
-      detail: 'Privacy-first desktop transcription app using Whisper AI\\n\\nVersion 1.0.0',
+      detail: 'Privacy-first desktop transcription app using Whisper AI\n\nVersion 1.0.0',
       buttons: ['OK']
     });
   }
