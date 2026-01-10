@@ -6,7 +6,6 @@
   "homepage": ".",
   "author": "Tattletale",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
