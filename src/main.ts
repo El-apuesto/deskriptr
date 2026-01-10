@@ -4,9 +4,6 @@ import { spawn } from 'child_process';
 import Store from 'electron-store';
 import { AppState, UsageStats, License, TranscriptionResult } from './types/index.js';
 
-const __filename = __filename || '';
-const __dirname = path.dirname(__filename) || __dirname;
-
 // Handle Squirrel.Windows installer events
 if (process.platform === 'win32') {
   const squirrelCommand = process.argv[1];
