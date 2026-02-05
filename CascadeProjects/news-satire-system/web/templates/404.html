@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - OK Crisis{% endblock %}
+
+{% block content %}
+<section class="error-section">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-logo">
+                <img src="/static/logo.png" alt="OK Crisis" class="error-logo-img">
+            </div>
+            
+            <h1 class="error-title">404</h1>
+            <h2 class="error-subtitle">Page Not Found</h2>
+            
+            <p class="error-message">
+                The article you're looking for seems to have gone missing. 
+                Perhaps it's been censored, or maybe it never existed in the first place.
+            </p>
+            
+            <div class="error-actions">
+                <a href="{{ url_for('home') }}" class="error-btn primary">Go Home</a>
+                <a href="{{ url_for('category', category='politics') }}" class="error-btn secondary">Read Politics</a>
+                <a href="{{ url_for('category', category='technology') }}" class="error-btn secondary">Read Technology</a>
+            </div>
+            
+            <div class="error-satire">
+                <p class="satire-note">
+                    <em>"In a world of infinite content, losing one page is both statistically insignificant and deeply meaningful."</em>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.error-section {
+    padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+.error-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-logo {
+    margin-bottom: var(--spacing-lg);
+}
+
+.error-logo-img {
+    height: 80px;
+    width: auto;
+    opacity: 0.7;
+}
+
+.error-title {
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--red-accent);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1;
+}
+
+.error-subtitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--soft-black);
+    margin-bottom: var(--spacing-lg);
+}
+
+.error-message {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-xl);
+}
+
+.error-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-xl);
+}
+
+.error-btn {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 2px solid;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.error-btn.primary {
+    background: var(--red-accent);
+    color: var(--pure-white);
+    border-color: var(--red-accent);
+}
+
+.error-btn.primary:hover {
+    background: var(--pure-white);
+    color: var(--red-accent);
+}
+
+.error-btn.secondary {
+    background: transparent;
+    color: var(--soft-black);
+    border-color: var(--light-gray);
+}
+
+.error-btn.secondary:hover {
+    background: var(--soft-black);
+    color: var(--pure-white);
+}
+
+.error-satire {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--light-gray);
+}
+
+.satire-note {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--medium-gray);
+    line-height: 1.6;
+}
+</style>
+{% endblock %}
