@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}OK Crisis - Premium News Satire{% endblock %}
+{% block description %}OK Crisis delivers premium news satire that reveals uncomfortable truths about power, hypocrisy, and systemic dysfunction.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-logo-large">
+                <img src="/static/logo.png" alt="OK Crisis" class="hero-logo-img">
+            </div>
+            <h1 class="hero-title">OK Crisis</h1>
+            <p class="hero-subtitle">Premium news satire that reveals uncomfortable truths about power, hypocrisy, and systemic dysfunction</p>
+            <div class="hero-cta">
+                <button class="hero-btn primary" onclick="showSubscribeModal()">Subscribe Now</button>
+                <button class="hero-btn secondary" onclick="window.location.href='#latest'">Read Latest</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Article -->
+{% if featured_article %}
+<section class="featured-article">
+    <div class="container">
+        <div class="featured-header">
+            <h2 class="featured-label">FEATURED STORY</h2>
+            <div class="featured-divider"></div>
+        </div>
+        
+        <article class="featured-card">
+            <div class="featured-image">
+                {% if featured_article.get('xkcd_comic') %}
+                    <img src="{{ featured_article.xkcd_comic.img }}" alt="{{ featured_article.xkcd_comic.alt }}" class="featured-img">
+                {% elif featured_article.get('custom_comic') %}
+                    <img src="{{ featured_article.custom_comic.url }}" alt="{{ featured_article.custom_comic.alt_text }}" class="featured-img">
+                {% else %}
+                    <div class="featured-placeholder">
+                        <img src="/static/logo.png" alt="OK Crisis" class="placeholder-logo">
+                    </div>
+                {% endif %}
+            </div>
+            
+            <div class="featured-content">
+                <div class="article-meta">
+                    <span class="category-tag">{{ featured_article.category|title }}</span>
+                    <span class="article-date">{{ featured_article.timestamp[:10] }}</span>
+                    <span class="reading-time">5 min read</span>
+                </div>
+                
+                <h2 class="featured-title">
+                    <a href="{{ url_for('article', article_id=featured_article.id) }}">
+                        {{ featured_article.headline }}
+                    </a>
+                </h2>
+                
+                <p class="featured-excerpt">{{ featured_article.opening_paragraph }}</p>
+                
+                <div class="featured-author">
+                    <div class="author-info">
+                        <span class="author-name">By {{ featured_article.byline }}</span>
+                        <span class="author-title">Senior Correspondent</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+{% endif %}
+
+<!-- Latest Articles -->
+<section id="latest" class="latest-articles">
+    <div class="container">
+        <header class="section-header">
+            <h2 class="section-title">Latest Stories</h2>
+            <div class="section-divider"></div>
+        </header>
+        
+        <div class="articles-grid">
+            {% for article in other_articles %}
+            <article class="article-card">
+                <div class="article-image">
+                    {% if article.get('xkcd_comic') %}
+                        <img src="{{ article.xkcd_comic.img }}" alt="{{ article.xkcd_comic.alt }}" class="article-img">
+                    {% elif article.get('custom_comic') %}
+                        <img src="{{ article.custom_comic.url }}" alt="{{ article.custom_comic.alt_text }}" class="article-img">
+                    {% else %}
+                        <div class="article-placeholder">
+                            <img src="/static/logo.png" alt="OK Crisis" class="placeholder-logo">
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="article-content">
+                    <div class="article-meta">
+                        <span class="category-tag">{{ article.category|title }}</span>
+                        <span class="article-date">{{ article.timestamp[:10] }}</span>
+                        <span class="reading-time">3 min read</span>
+                    </div>
+                    
+                    <h3 class="article-title">
+                        <a href="{{ url_for('article', article_id=article.id) }}">
+                            {{ article.headline }}
+                        </a>
+                    </h3>
+                    
+                    <p class="article-excerpt">{{ article.opening_paragraph[:120] }}...</p>
+                    
+                    <div class="article-author">
+                        <span class="author-name">{{ article.byline }}</span>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        
+        {% if not other_articles %}
+        <div class="no-articles">
+            <img src="/static/logo.png" alt="OK Crisis" class="no-articles-logo">
+            <h3>No articles available yet</h3>
+            <p>Check back soon for our latest premium satire content</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Trending Section -->
+<section class="trending-section">
+    <div class="container">
+        <header class="section-header">
+            <h2 class="section-title">Trending Topics</h2>
+            <div class="section-divider"></div>
+        </header>
+        
+        <div class="trending-grid">
+            <div class="trending-item">
+                <h3>Politics</h3>
+                <p>Latest political satire and commentary</p>
+                <a href="{{ url_for('category', category='politics') }}" class="trending-link">Read More →</a>
+            </div>
+            <div class="trending-item">
+                <h3>Business</h3>
+                <p>Corporate world exposed through satire</p>
+                <a href="{{ url_for('category', category='business') }}" class="trending-link">Read More →</a>
+            </div>
+            <div class="trending-item">
+                <h3>Technology</h3>
+                <p>Tech industry insights with a twist</p>
+                <a href="{{ url_for('category', category='technology') }}" class="trending-link">Read More →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter">
+    <div class="container">
+        <div class="newsletter-content">
+            <div class="newsletter-logo">
+                <img src="/static/logo.png" alt="OK Crisis" class="newsletter-logo-img">
+            </div>
+            <h2 class="newsletter-title">Stay Informed</h2>
+            <p class="newsletter-subtitle">Get the latest premium satire delivered to your inbox</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                <button type="submit" class="newsletter-button">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
