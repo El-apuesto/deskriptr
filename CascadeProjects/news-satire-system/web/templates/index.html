@@ -51,7 +51,7 @@
                 </div>
                 
                 <h2 class="featured-title">
-                    <a href="{{ url_for('article', article_id=featured_article.id) }}">
+                    <a href="{{ url_for('article', article_id=featured_article.id|string) }}">
                         {{ featured_article.headline }}
                     </a>
                 </h2>
@@ -101,7 +101,7 @@
                     </div>
                     
                     <h3 class="article-title">
-                        <a href="{{ url_for('article', article_id=article.id) }}">
+                        <a href="{{ url_for('article', article_id=article.id|string) }}">
                             {{ article.headline }}
                         </a>
                     </h3>

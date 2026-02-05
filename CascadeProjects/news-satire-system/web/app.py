@@ -109,7 +109,7 @@ def home():
                         featured_article=featured_article,
                         other_articles=other_articles)
 
-@app.route('/article/<article_id>')
+@app.route('/article/<path:article_id>')
 def article(article_id):
     """Individual article page."""
     article = archive_manager.get_article_by_id(article_id)
