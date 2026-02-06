@@ -1,0 +1,455 @@
+{% extends "base.html" %}
+
+{% block title %}About The Satire Standard - Premium News Satire{% endblock %}
+{% block description %}Learn about The Satire Standard, the premier destination for sophisticated satire and elegant absurdity in modern journalism.{% endblock %}
+
+{% block content %}
+<style>
+.about-header {
+    background: linear-gradient(135deg, var(--deep-black) 0%, var(--rich-black) 100%);
+    color: white;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.about-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.about-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-gold);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.about-content {
+    padding: 5rem 0;
+    background: white;
+}
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.about-section {
+    margin-bottom: 4rem;
+}
+
+.about-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--deep-black);
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.about-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--primary-gold);
+}
+
+.about-text {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-align: justify;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.mission-card {
+    text-align: center;
+    padding: 2rem;
+    background: var(--soft-gray);
+    transition: all 0.3s ease;
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.mission-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-gold);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mission-icon i {
+    font-size: 2rem;
+    color: var(--deep-black);
+}
+
+.mission-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--deep-black);
+}
+
+.mission-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.values-section {
+    background: var(--soft-gray);
+    padding: 4rem 0;
+    margin: 4rem 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.value-item {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.value-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+}
+
+.value-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--deep-black);
+}
+
+.team-section {
+    padding: 4rem 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border: 1px solid #E5E5E5;
+    transition: all 0.3s ease;
+}
+
+.team-member:hover {
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+}
+
+.member-avatar {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-avatar i {
+    font-size: 3rem;
+    color: var(--deep-black);
+}
+
+.member-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--deep-black);
+}
+
+.member-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--primary-gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.member-bio {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.cta-section {
+    background: var(--deep-black);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-gold);
+}
+
+.cta-text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 2.5rem;
+    }
+    
+    .about-subtitle {
+        font-size: 1rem;
+    }
+    
+    .about-text {
+        font-size: 1.1rem;
+    }
+    
+    .mission-grid,
+    .values-grid,
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+</style>
+
+<!-- About Header -->
+<header class="about-header">
+    <div class="container">
+        <h1 class="about-title">About The Satire Standard</h1>
+        <p class="about-subtitle">Where Intellectual Rigor Meets Elegant Absurdity</p>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="about-content">
+    <div class="content-wrapper">
+        <!-- Our Story -->
+        <section class="about-section">
+            <h2>Our Story</h2>
+            <div class="about-text">
+                <p>
+                    Founded on the principle that reality needs a better editor, The Satire Standard emerged from a collective realization 
+                    that modern life has become so absurd it requires sophisticated commentary to properly appreciate its magnificent 
+                    theatricality.
+                </p>
+                <p>
+                    We believe that satire, when crafted with intellectual precision and literary elegance, serves not merely as 
+                    entertainment but as a necessary mirror held up to society—a reflection so polished that we cannot help but 
+                    see both the comedy and the tragedy of our collective existence.
+                </p>
+                <p>
+                    In an age of information overload and manufactured outrage, we offer discerning readers a refuge of wit so 
+                    sharp it could cut through the thickest hypocrisy, and prose so elegant it makes even the most ridiculous 
+                    situations seem momentarily dignified.
+                </p>
+            </div>
+        </section>
+
+        <!-- Our Mission -->
+        <section class="about-section">
+            <h2>Our Mission</h2>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3 class="mission-title">Elegant Prose</h3>
+                    <p class="mission-description">
+                        Crafting satire with literary precision and sophisticated wit that appeals to the intellect while 
+                        tickling the funny bone with surgical accuracy.
+                    </p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="mission-title">Sharp Insight</h3>
+                    <p class="mission-description">
+                        Delivering observations that cut through the noise with intellectual honesty, revealing the 
+                        uncomfortable truths hidden beneath layers of social convention.
+                    </p>
+                </div>
+                
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="mission-title">Premium Quality</h3>
+                    <p class="mission-description">
+                        Maintaining the highest standards of journalistic satire, where every article is meticulously 
+                        edited and polished to meet our exacting standards of excellence.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Our Values -->
+    <section class="values-section">
+        <div class="container">
+            <div class="content-wrapper">
+                <h2 style="text-align: center; margin-bottom: 1rem;">Our Core Values</h2>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-number">01</div>
+                        <div class="value-text">Intellectual Honesty</div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-number">02</div>
+                        <div class="value-text">Literary Excellence</div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-number">03</div>
+                        <div class="value-text">Sophisticated Wit</div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-number">04</div>
+                        <div class="value-text">Elegant Absurdity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-wrapper">
+        <!-- Our Philosophy -->
+        <section class="about-section">
+            <h2>Our Philosophy</h2>
+            <div class="about-text">
+                <p>
+                    We operate on the fundamental belief that the world is inherently ridiculous, and that the most effective 
+                    way to address this ridiculousness is not through anger or despair, but through the refined art of satire. 
+                    Our approach combines the analytical rigor of serious journalism with the creative freedom of comedic expression.
+                </p>
+                <p>
+                    Every article we publish is crafted with the understanding that satire, at its best, is not merely about 
+                    making people laugh—it's about making them think. The most powerful satire leaves readers with a lingering 
+                    sense of recognition, a moment of clarity where the absurdity of a situation becomes suddenly, brilliantly clear.
+                </p>
+                <p>
+                    We strive to be the literary equivalent of a perfectly executed magic trick—moments of wonder that reveal 
+                    the hidden mechanisms of our social, political, and cultural performances, all while entertaining our audience 
+                    with the sheer artistry of the revelation.
+                </p>
+            </div>
+        </section>
+
+        <!-- The Team -->
+        <section class="team-section">
+            <h2 style="text-align: center;">Our Distinguished Contributors</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="member-name">The Editor</h3>
+                    <div class="member-title">Chief Satirist</div>
+                    <p class="member-bio">
+                        A mysterious figure who believes that if you can't say something nice, you should at least say something 
+                        brilliantly witty and devastatingly accurate.
+                    </p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-glasses"></i>
+                    </div>
+                    <h3 class="member-name">The Analyst</h3>
+                    <div class="member-title">Senior Commentator</div>
+                    <p class="member-bio">
+                        Armed with a PhD in Absurdity Studies and an unhealthy obsession with bureaucratic language, 
+                        they find poetry in the prose of committee meetings.
+                    </p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3 class="member-name">Wordsmith</h3>
+                    <div class="member-title">Literary Satirist</div>
+                    <p class="member-bio">
+                        Believes that every press release is a tragic novel waiting to be edited, and every corporate 
+                        mission statement is comedy gold in need of refinement.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Call to Action -->
+<section class="cta-section">
+    <div class="container">
+        <h2 class="cta-title">Join the Conversation</h2>
+        <p class="cta-text">
+            Subscribe to our premium dispatch and receive weekly curated satire that will make you question everything, 
+            especially your own sense of humor.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="/" class="luxury-btn">Read Latest Articles</a>
+            <a href="#" class="luxury-btn" style="background: transparent; border: 2px solid var(--primary-gold); color: var(--primary-gold);">Subscribe</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

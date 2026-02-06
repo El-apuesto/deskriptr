@@ -1,142 +1,233 @@
 {% extends "base.html" %}
 
-{% block title %}Page Not Found - OK Crisis{% endblock %}
+{% block title %}Page Not Found - The Satire Standard{% endblock %}
 
 {% block content %}
-<section class="error-section">
-    <div class="container">
-        <div class="error-content">
-            <div class="error-logo">
-                <img src="/static/logo.png" alt="OK Crisis" class="error-logo-img">
-            </div>
-            
-            <h1 class="error-title">404</h1>
-            <h2 class="error-subtitle">Page Not Found</h2>
-            
-            <p class="error-message">
-                The article you're looking for seems to have gone missing. 
-                Perhaps it's been censored, or maybe it never existed in the first place.
-            </p>
-            
-            <div class="error-actions">
-                <a href="{{ url_for('home') }}" class="error-btn primary">Go Home</a>
-                <a href="{{ url_for('category', category='politics') }}" class="error-btn secondary">Read Politics</a>
-                <a href="{{ url_for('category', category='technology') }}" class="error-btn secondary">Read Technology</a>
-            </div>
-            
-            <div class="error-satire">
-                <p class="satire-note">
-                    <em>"In a world of infinite content, losing one page is both statistically insignificant and deeply meaningful."</em>
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
 <style>
 .error-section {
-    padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+    padding: 6rem 0;
     min-height: 70vh;
     display: flex;
     align-items: center;
+    background: linear-gradient(135deg, var(--soft-gray) 0%, white 100%);
 }
 
 .error-content {
     text-align: center;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
-.error-logo {
-    margin-bottom: var(--spacing-lg);
-}
-
-.error-logo-img {
-    height: 80px;
-    width: auto;
-    opacity: 0.7;
+.error-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+    line-height: 1;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .error-title {
-    font-size: 6rem;
-    font-weight: 900;
-    color: var(--red-accent);
-    margin-bottom: var(--spacing-sm);
-    line-height: 1;
-}
-
-.error-subtitle {
-    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
     font-weight: 700;
-    color: var(--soft-black);
-    margin-bottom: var(--spacing-lg);
+    color: var(--deep-black);
+    margin-bottom: 2rem;
+    line-height: 1.2;
 }
 
 .error-message {
-    font-family: var(--font-sans);
-    font-size: 1.125rem;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.3rem;
     line-height: 1.6;
-    color: var(--medium-gray);
-    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .error-actions {
     display: flex;
-    gap: var(--spacing-md);
+    gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: 3rem;
 }
 
 .error-btn {
-    padding: var(--spacing-sm) var(--spacing-lg);
-    font-family: var(--font-sans);
-    font-size: 1rem;
+    background: var(--primary-gold);
+    color: var(--deep-black);
+    border: none;
+    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: 2px solid;
-    border-radius: var(--radius-sm);
+    letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
+    border-radius: 0;
 }
 
-.error-btn.primary {
-    background: var(--red-accent);
-    color: var(--pure-white);
-    border-color: var(--red-accent);
-}
-
-.error-btn.primary:hover {
-    background: var(--pure-white);
-    color: var(--red-accent);
+.error-btn:hover {
+    background: var(--dark-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
 }
 
 .error-btn.secondary {
     background: transparent;
-    color: var(--soft-black);
-    border-color: var(--light-gray);
+    color: var(--deep-black);
+    border: 2px solid var(--primary-gold);
 }
 
 .error-btn.secondary:hover {
-    background: var(--soft-black);
-    color: var(--pure-white);
+    background: var(--primary-gold);
+    color: var(--deep-black);
 }
 
 .error-satire {
-    margin-top: var(--spacing-xl);
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--light-gray);
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #E5E5E5;
 }
 
-.satire-note {
-    font-family: var(--font-serif);
-    font-size: 1rem;
+.satire-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
     font-style: italic;
-    color: var(--medium-gray);
+    color: var(--text-primary);
     line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.satire-attribution {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.error-icon {
+    font-size: 4rem;
+    color: var(--primary-gold);
+    margin-bottom: 2rem;
+    opacity: 0.7;
+}
+
+.suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.suggestion-card {
+    background: white;
+    padding: 1.5rem;
+    border: 1px solid #E5E5E5;
+    transition: all 0.3s ease;
+}
+
+.suggestion-card:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.suggestion-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--deep-black);
+}
+
+.suggestion-link {
+    color: var(--primary-gold);
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.suggestion-link:hover {
+    color: var(--dark-gold);
+}
+
+@media (max-width: 768px) {
+    .error-number {
+        font-size: 5rem;
+    }
+    
+    .error-title {
+        font-size: 2rem;
+    }
+    
+    .error-message {
+        font-size: 1.1rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .suggestions-grid {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
+
+<section class="error-section">
+    <div class="container">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="error-number">404</div>
+            <h1 class="error-title">Lost in the Absurdity</h1>
+            
+            <p class="error-message">
+                The article you seek has vanished into the ether, much like common sense in modern discourse. 
+                Perhaps it never existed, or perhaps it's simply hiding in plain sight, mocking your search for meaning.
+            </p>
+            
+            <div class="error-actions">
+                <a href="/" class="error-btn">Return to Elegance</a>
+                <a href="/category/politics" class="error-btn secondary">Political Absurdity</a>
+                <a href="/category/technology" class="error-btn secondary">Tech Satire</a>
+            </div>
+            
+            <div class="suggestions-grid">
+                <div class="suggestion-card">
+                    <h3 class="suggestion-title">Latest Articles</h3>
+                    <a href="/" class="suggestion-link">Explore Now →</a>
+                </div>
+                <div class="suggestion-card">
+                    <h3 class="suggestion-title">About Us</h3>
+                    <a href="/about" class="suggestion-link">Learn More →</a>
+                </div>
+                <div class="suggestion-card">
+                    <h3 class="suggestion-title">Premium Content</h3>
+                    <a href="#" class="suggestion-link">Subscribe →</a>
+                </div>
+            </div>
+            
+            <div class="error-satire">
+                <p class="satire-quote">
+                    "In the grand theater of existence, a 404 error is merely the universe's way of reminding you that 
+                    not all paths lead to enlightenment—some lead to server errors."
+                </p>
+                <div class="satire-attribution">— The Digital Oracle</div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
