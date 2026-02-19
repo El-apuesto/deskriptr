@@ -1,0 +1,59 @@
+# System files and folders
+AppData/
+Application Data/
+Cookies/
+Local Settings/
+My Documents/
+NetHood/
+PrintHood/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+NTUSER.*
+ntuser.*
+*.log
+*.tmp
+*.bak
+
+# Development tools
+.cargo/
+.codeium/
+.codex/
+.config/
+.gitconfig
+.idlerc/
+.lesshst
+.matplotlib/
+.netrc/
+.node_repl_history
+.npmrc/
+.ollama/
+.rustup/
+.vscode/
+.windsurf/
+
+# Windows system folders
+3D Objects/
+Documents/
+Favorites/
+IntelGraphicsProfiles/
+Links/
+Music/
+OneDrive/
+Pictures/
+Saved Games/
+Searches/
+Videos/
+dyad/
+
+# Project-specific ignores
+CascadeProjects/*/node_modules/
+CascadeProjects/*/dist/
+CascadeProjects/*/build/
+CascadeProjects/*/.env.local
+CascadeProjects/*/.env.production
+
+# Keep important project folders
+!CascadeProjects/
+!Kimi_Agent_The Breakdown Spec/
