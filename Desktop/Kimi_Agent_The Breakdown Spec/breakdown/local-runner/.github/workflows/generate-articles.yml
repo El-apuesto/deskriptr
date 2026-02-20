@@ -1,0 +1,28 @@
+name: Generate Satire Articles
+
+on:
+  schedule:
+    # 8:00 AM CST (14:00 UTC)
+    - cron: '0 14 * * *'
+    # 8:00 PM CST (2:00 UTC next day)
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Trigger Local Runner
+      run: |
+        curl -X POST http://localhost:3000/api/run/morning \
+          -H "Content-Type: application/json" \
+          -d '{"manual": true}' || echo "Runner not responding"
+      
+    - name: Wait for completion
+      run: |
+        sleep 60 # Wait 1 minute for generation to complete
+      
+    - name: Log completion
+      run: |
+        echo "Article generation triggered at $(date)"
